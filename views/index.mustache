@@ -1,17 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>{{ title }}</title>
-  <style>
-    td {border: 1px solid black;}
-  </style>
+    <title>{{title}}</title>
+    <style>
+        /* responsive layout to go from 3 cols to 1 when screensize decreases/
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            .hide-mobile { display: none; } /* hiding genre and bookID*/
+        }
+    </style>
 </head>
 <body>
-<nav>
+    <nav>
         <a href="/">Bookshelf</a> | <a href="/add">Add Book</a> | <a href="/manage">Manage</a>
     </nav>
+    <h1>{{title}}</h1>
 
-
-
+    <div class="grid">
+        {{#books}}
+        <div class="book-card">
+            <img src="{{image_URL}}" alt="Cover" style="width:150px;">
+            <h3>{{title}}</h3>
+            <p>Author: {{author}}</p>
+            <p>Rating: {{rating}}/10</p>
+            <p class="hide-mobile">Genre: {{genre}}</p>
+            <p class="hide-mobile">ID: {{id}}</p>
+            <p>Status: {{#is_read}}Read{{/is_read}}{{^is_read}}To Be Read{{/is_read}}</p>
+        </div>
+        {{/books}}
+        
+        {{^books}}
+        <p>No books found. Try adding one!</p>
+        {{/books}}
+    </div>
 </body>
 </html>
