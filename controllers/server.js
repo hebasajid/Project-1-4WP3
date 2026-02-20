@@ -14,6 +14,9 @@ app.set('views', __dirname + '/views');
 // having the middleware to handle form data 
 app.use(express.urlencoded({ extended: false }));
 
+
+//NOW DEFINING ROUTES TO RENDER A DIFF MUSTACHE FILE FOR EACH ROUTE: 
+
 //getting list of books from the database and rendering the index page with the list of books (users bookshelf)
 //READ action
 app.get('/', (req, res) => {
@@ -23,6 +26,19 @@ app.get('/', (req, res) => {
               books: rows });
     });
 });
+
+// adding a book nav link -  form 
+//User creates a new entry here:
+app.get('/add', (req, res) => {
+    res.render('addBook', { title: "Add a New Book" });
+});
+
+// managing a book nav link  
+//User edits a book entry here -> update or delete book entry
+app.get('/manage', (req, res) => {
+    res.render('manageBook', { title: "Manage Library", books: rows });
+});
+
 
 app.listen(3000, () => {
     console.log("Server started at http://localhost:3000");
