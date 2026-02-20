@@ -1,0 +1,17 @@
+{
+  "name": "project-1-4wp3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mustache-express": "^1.3.2",
+    "sqlite3": "^5.1.7"
+  }
+}
