@@ -137,6 +137,18 @@ app.post('/delete/:id', (req, res) => {
     });
 });
 
+//post route to delete all books from the database - DELETE action:
+
+app.post('/delete-all', (req, res) => {
+    db.run("DELETE FROM Books", (err) => {
+        if (err) {
+            res.status(500).send("Error clearing the database");
+        } else {
+            res.redirect('/');
+        }
+    });
+});
+
 //using post route to update a book in the database - UPDATE action:
 app.post('/toggle-status/:id', (req, res) => {
     const id = req.params.id;

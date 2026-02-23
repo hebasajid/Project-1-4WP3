@@ -7,6 +7,7 @@
     <nav><a href="/">My Bookshelf</a> | <a href="/add">Add Book</a> | <a href="/manage">Manage Books</a></nav>
     <h1>Manage Your Records</h1>
 
+
     <form action="/delete-all" method="POST" onsubmit="return confirm('Clear everything?');">
         <button type="submit" style="color: red;">DELETE ALL RECORDS</button>
     </form>
@@ -24,6 +25,8 @@
                 <form action="/toggle-status/{{id}}" method="POST" style="display:inline;">
                     <button type="submit">Toggle Read/Unread</button>
                 </form>
+
+                <a href="/edit/{{id}}"><button type="button">Edit Details</button></a>
 
                 <form action="/delete/{{id}}" method="POST" style="display:inline;">
                     <button type="submit">Delete</button>
