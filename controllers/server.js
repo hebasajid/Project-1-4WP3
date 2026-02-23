@@ -78,6 +78,18 @@ app.post('/insert-book', (req, res) => {
     });
 });
 
+//using post route to delete a book from the database - DELETE action:
+app.post('/delete/:id', (req, res) => {
+    const id = req.params.id;
+    db.run("DELETE FROM Books WHERE id = ?", id, (err) => {
+        if (err) {
+            res.status(500).send("Delete failed");
+        } else {
+            res.redirect('/manage'); 
+        }
+    });
+});
+
 app.listen(3000, () => {
     console.log("Server started at http://localhost:3000");
 });
