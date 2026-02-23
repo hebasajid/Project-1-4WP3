@@ -59,7 +59,7 @@ app.get('/', (req, res) => {
 // adding a book nav link -  form 
 //User creates a new entry here:
 app.get('/add', (req, res) => {
-    res.render('index', { title: "Add a New Book" });
+    res.render('addBook', { title: "Add a New Book" });
 });
 
 
