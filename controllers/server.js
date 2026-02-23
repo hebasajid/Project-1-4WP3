@@ -42,7 +42,7 @@ app.get('/manage', (req, res) => {
             console.error(err);
             res.status(500).send("Database Error");
         } else {
-            res.render('manage', { 
+            res.render('manageBook', { 
                 title: "Manage Library", 
                 books: rows 
             });
