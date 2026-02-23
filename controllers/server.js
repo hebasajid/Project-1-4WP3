@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.get('/', (req, res) => {
 
     const selectedGenre = req.query.genre;
-    const selectedRead = req.query.is_read;
+    const selectedRead = req.query.is_read; //1 = read, 0 = unread, undefined = no filter on read status
     let sql = "SELECT * FROM Books";
     let params = [];
 
@@ -32,9 +32,9 @@ app.get('/', (req, res) => {
         params.push(selectedGenre);
     }
 
-    if (selectedRead !== undefined && selectedRead !== null) {
-        sql += selectedGenre ? " AND is_read = ?" : " WHERE is_read = ?";
-        params.push(selectedRead === "true" ? 1 : 0);
+   if (selectedRead !== undefined) {
+        sql += (params.length > 0) ? " AND is_read = ?" : " WHERE is_read = ?";
+        params.push(parseInt(selectedRead)); // converting string "1" or "0" to  number
     }
 
    db.all(sql, params, (err, rows) => { 
