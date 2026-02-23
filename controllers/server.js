@@ -40,6 +40,44 @@ app.get('/manage', (req, res) => {
 });
 
 
+//using post route to add a book to the database - CREATE action - taking data from the form and inserting it into the database
+
+app.post('/insert-book', (req, res) => {
+    const { title, author, genre, rating, is_read, image_URL } = req.body;
+    let errors = [];
+
+    //adding validation to ensure all fields are filled out
+    // backend validation: Check if required fields are empty
+    if (!title || title.trim() === "") errors.push("Title cannot be empty.");
+    if (!author || author.trim() === "") errors.push("Author cannot be empty.");
+
+    //  backend validation: checking to ensure rating is between 0 and 10
+    const numRating = parseFloat(rating);
+    if (isNaN(numRating) || numRating < 0 || numRating > 10) {
+        errors.push("Rating must be a numeric value between 0.0 and 10.0.");
+    }
+
+    //after validation checking if there are errors, if so re-render the form with error messages
+    if (errors.length > 0) {
+        //rendering the add page again and passing the error messages to Mustache
+        return res.render('addBook', { 
+            title: "Add a New Book", 
+            errorMessage: errors,
+            prevData: req.body
+        });
+    }
+
+    db.run("INSERT INTO Books (title, author, genre, rating, is_read, image_URL) VALUES (?, ?, ?, ?, ?, ?)", 
+    [title, author, genre, rating, is_read, image_URL], function(err) {
+        if (err) {
+            console.error(err);
+            res.status(500).send("Error adding a book");
+        } else {
+            res.redirect('/');
+        }
+    });
+});
+
 app.listen(3000, () => {
     console.log("Server started at http://localhost:3000");
 });
