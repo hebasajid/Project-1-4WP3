@@ -1,0 +1,25 @@
+1. Ensure node.js is installed.
+2. Use npm install to get the node_modules folder; it will install the dependencies:
+express, mustache, and sqlite3
+
+3. Navigate to the project root folder: "Project-1-4WP3".
+   - Run the command: npm install
+
+4.Before running the app, you must initialize the SQLite database.
+   - Run the command: node models/model.js
+   - This will create the 'book.db' file and seed it with initial records.
+
+5. Run the command: node controllers/server.js
+
+6. Open your web browser and navigate to: http://localhost:3000
+
+7. TESTING THE 8 ACTIONS:
+   - Create: Use the "Add Book" link in the nav.
+   - Read: View the main "Bookshelf" page.
+   - Update Status: Click "Toggle Status" on the Manage page -> should update on home page.
+   - Delete: Click "Delete" on the Manage page.
+   - Filter: Use the genre/status links on the Bookshelf.
+   - Sort: Use the "Sort by Rating" link on the Bookshelf.
+   - Edit Details: Use the "Edit Details" button on the Manage page.
+   - Delete All: Use the "Clean Slate" button on the Manage page.
+
