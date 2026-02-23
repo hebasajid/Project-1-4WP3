@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const mustacheExpress = require('mustache-express'); //inlcuding mustache as the templating engine
 const db = require('../models/model.js'); // setting up dependencies and importing the db
@@ -9,7 +10,7 @@ app.engine("mustache", mustacheExpress());
 // sets mustache to be the view engine
 app.set('view engine', 'mustache');
 
-app.set('views', __dirname + '/views');
+app.set('views', path.join(__dirname, '..', 'views'));
 
 // having the middleware to handle form data 
 app.use(express.urlencoded({ extended: false }));
