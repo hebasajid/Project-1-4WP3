@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New Book</title>
+</head>
+<body>
+    <nav><a href="/">My Bookshelf</a> | <a href="/add">Add Book</a> | <a href="/manage">Manage Books</a></nav>
+    <h1>Add a New Book</h1>
+
+    <form action="/insert-book" method="POST">
+        <p>Title: <input type="text" name="title" required></p>
+        <p>Author: <input type="text" name="author" required></p>
+        <p>Genre: <input type="text" name="genre" required></p>
+        
+        <p>Rating: <input type="number" name="rating" step="0.1" min="0" max="10" required></p>
+        
+        <p>Image URL: <input type="url" name="image_URL" placeholder="https://..."></p>
+        
+        <p>Status: 
+            <select name="is_read">
+                <option value="0">To Be Read</option>
+                <option value="1">Read</option>
+            </select>
+        </p>
+        
+        <button type="submit">Save Book</button>
+    </form>
+</body>
+</html>
