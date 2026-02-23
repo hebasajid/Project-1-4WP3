@@ -4,28 +4,52 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Book</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+<h1>The Ink Ledger</h1>
     <nav><a href="/">My Bookshelf</a> | <a href="/add">Add Book</a> | <a href="/manage">Manage Books</a></nav>
+
+    <div class="form-container">
     <h1>Add a New Book</h1>
 
     <form action="/insert-book" method="POST">
-        <p>Title: <input type="text" name="title" required></p>
-        <p>Author: <input type="text" name="author" required></p>
-        <p>Genre: <input type="text" name="genre" required></p>
-        
-        <p>Rating: <input type="number" name="rating" step="0.1" min="0" max="10" required></p>
-        
-        <p>Image URL: <input type="url" name="image_URL" placeholder="https://..."></p>
-        
-        <p>Status: 
-            <select name="is_read">
-                <option value="0">To Be Read</option>
-                <option value="1">Read</option>
-            </select>
-        </p>
+        <div class="form-group">
+                <label>Title:</label>
+                <input type="text" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label>Author:</label>
+                <input type="text" name="author" required>
+            </div>
+
+            <div class="form-group">
+                <label>Genre:</label>
+                <input type="text" name="genre" required>
+            </div>
+
+            <div class="form-group">
+                <label>Rating:</label>
+                <input type="number" name="rating" step="0.1" min="0" max="10" required>
+            </div>
+
+            <div class="form-group">
+                <label>Image URL:</label>
+                <input type="url" name="image_URL" placeholder="https://...">
+            </div>
+
+            <div class="form-group">
+                <label>Status:</label>
+                <select name="is_read">
+                    <option value="0">To Be Read</option>
+                    <option value="1">Read</option>
+                </select>
+            </div>
+    </div>
+    
         
         <button type="submit">Save Book</button>
     </form>

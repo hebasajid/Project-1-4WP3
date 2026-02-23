@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
     <style>
         /* responsive layout to go from 3 cols to 1 when screensize decreases/
@@ -15,6 +16,7 @@
      <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+<h1>The Ink Ledger</h1>
     <nav>
         <a href="/">My Bookshelf</a> | <a href="/add">Add Book</a> | <a href="/manage">Manage Books</a>
     </nav>
@@ -45,7 +47,7 @@
 
     <h1>{{title}}</h1>
 
-    <div class="grid">
+    <div class="bookshelf-grid">
         {{#books}}
         <div class="book-card">
             <img src="{{image_URL}}" alt="Cover" style="width:150px;">
