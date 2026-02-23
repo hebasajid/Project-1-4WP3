@@ -37,7 +37,17 @@ app.get('/add', (req, res) => {
 // managing a book nav link  
 //User edits a book entry here -> update or delete book entry
 app.get('/manage', (req, res) => {
-    res.render('manageBook', { title: "Manage Library", books: rows });
+    db.all("SELECT * FROM Books", (err, rows) => {
+        if (err) {
+            console.error(err);
+            res.status(500).send("Database Error");
+        } else {
+            res.render('manage', { 
+                title: "Manage Library", 
+                books: rows 
+            });
+        }
+    });
 });
 
 
