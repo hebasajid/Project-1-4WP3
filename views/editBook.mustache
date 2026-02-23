@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html>
+<head>
+ <title>Edit Book</title>
+<link rel="stylesheet" href="/style.css">
+</head>
 <h1>Edit Book: {{book.title}}</h1>
 <form action="/update-book/{{book.id}}" method="POST">
     <p>Genre: <input type="text" name="genre" value="{{book.genre}}" required></p>
