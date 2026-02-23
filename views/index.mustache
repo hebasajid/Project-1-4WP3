@@ -16,6 +16,29 @@
     <nav>
         <a href="/">My Bookshelf</a> | <a href="/add">Add Book</a> | <a href="/manage">Manage Books</a>
     </nav>
+
+    <div>
+    <strong>Filter by Genre:</strong>
+    <a href="/">All</a> | 
+    <a href="/?genre=Fantasy">Fantasy</a> | 
+    <a href="/?genre=Dystopian">Dystopian</a>
+</div>
+
+<div>
+    <strong>Filter by Is Read:</strong>
+    <a href="/">All</a> | 
+    <a href="/?is_read=1">Unread</a> | 
+    <a href="/?is_read=0">Read</a>
+</div>
+
+{{#genre}}
+    <p>Showing books in: <strong>{{genre}}</strong></p>
+{{/genre}}
+
+{{#is_read}}
+    <p>Showing books in: <strong>{{is_read}}</strong></p>
+{{/is_read}}
+
     <h1>{{title}}</h1>
 
     <div class="grid">

@@ -21,18 +21,42 @@ app.use(express.urlencoded({ extended: false }));
 //getting list of books from the database and rendering the index page with the list of books (users bookshelf)
 //READ action
 app.get('/', (req, res) => {
-    db.all("SELECT * FROM Books", (err, rows) => {
-        res.render('index', 
-            { title: "My Bookshelf",
-              books: rows });
+
+    const selectedGenre = req.query.genre;
+    const selectedRead = req.query.is_read;
+    let sql = "SELECT * FROM Books";
+    let params = [];
+
+    if (selectedGenre) {
+        sql = "SELECT * FROM Books WHERE genre = ?";
+        params.push(selectedGenre);
+    }
+
+    if (selectedRead !== undefined && selectedRead !== null) {
+        sql += selectedGenre ? " AND is_read = ?" : " WHERE is_read = ?";
+        params.push(selectedRead === "true" ? 1 : 0);
+    }
+
+   db.all(sql, params, (err, rows) => { 
+        if (err) {
+            console.error(err);
+            return res.status(500).send("Database Error");
+        }
+        res.render('index', { 
+            title: "My Bookshelf",
+            books: rows,
+            genre: selectedGenre,
+            is_read: selectedRead
+        });
     });
 });
 
 // adding a book nav link -  form 
 //User creates a new entry here:
 app.get('/add', (req, res) => {
-    res.render('addBook', { title: "Add a New Book" });
+    res.render('index', { title: "Add a New Book" });
 });
+
 
 // managing a book nav link  
 //User edits a book entry here -> update or delete book entry
