@@ -90,6 +90,15 @@ app.post('/delete/:id', (req, res) => {
     });
 });
 
+//using post route to update a book in the database - UPDATE action:
+app.post('/toggle-status/:id', (req, res) => {
+    const id = req.params.id;
+    // using sql logic to flip 0 to 1 or 1 to 0
+    db.run("UPDATE Books SET is_read = NOT is_read WHERE id = ?", id, (err) => {
+        res.redirect('/manage');
+    });
+});
+
 app.listen(3000, () => {
     console.log("Server started at http://localhost:3000");
 });
