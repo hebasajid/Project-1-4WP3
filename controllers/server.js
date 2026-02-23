@@ -24,12 +24,17 @@ app.get('/', (req, res) => {
 
     const selectedGenre = req.query.genre;
     const selectedRead = req.query.is_read; //1 = read, 0 = unread, undefined = no filter on read status
+    const sort = req.query.sort; //sorting parameter by rating
     let sql = "SELECT * FROM Books";
     let params = [];
 
     if (selectedGenre) {
         sql = "SELECT * FROM Books WHERE genre = ?";
         params.push(selectedGenre);
+    }
+ //sorting by rating if the sort query parameter is set to 'rating'
+    if (sort === 'rating') {
+        sql += " ORDER BY rating DESC";
     }
 
    if (selectedRead !== undefined) {
