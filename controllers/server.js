@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+app.use(express.static('public'));
 const app = express();
 const mustacheExpress = require('mustache-express'); //inlcuding mustache as the templating engine
 const db = require('../models/model.js'); // setting up dependencies and importing the db
