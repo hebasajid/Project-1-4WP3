@@ -79,6 +79,13 @@ app.get('/manage', (req, res) => {
     });
 });
 
+//rendering the edit page for a specific book when the user clicks the edit button - showing the form pre-populated with the current book data
+app.get('/edit/:id', (req, res) => {
+    const id = req.params.id;
+    db.get("SELECT * FROM Books WHERE id = ?", [id], (err, row) => {
+        res.render('editBook', { book: row });
+    });
+});
 
 //using post route to add a book to the database - CREATE action - taking data from the form and inserting it into the database
 
@@ -136,6 +143,22 @@ app.post('/toggle-status/:id', (req, res) => {
     // using sql logic to flip 0 to 1 or 1 to 0
     db.run("UPDATE Books SET is_read = NOT is_read WHERE id = ?", id, (err) => {
         res.redirect('/manage');
+    });
+});
+
+//processing the form submission from the edit page to update the book details in the database
+app.post('/update-book/:id', (req, res) => {
+    const id = req.params.id;
+    const { genre, rating } = req.body;
+
+    //backend validation:
+    if (parseFloat(rating) < 0 || parseFloat(rating) > 10) {
+        return res.status(400).send("Rating must be between 0 and 10.");
+    }
+
+    db.run("UPDATE Books SET genre = ?, rating = ? WHERE id = ?", [genre, rating, id], (err) => {
+        if (err) { res.status(500).send("Update failed"); }
+        else { res.redirect('/manage'); }
     });
 });
 

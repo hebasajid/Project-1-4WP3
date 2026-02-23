@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<h1>Edit Book: {{book.title}}</h1>
+<form action="/update-book/{{book.id}}" method="POST">
+    <p>Genre: <input type="text" name="genre" value="{{book.genre}}" required></p>
+    
+    <p>Rating: <input type="number" name="rating" step="0.1" min="0" max="10" value="{{book.rating}}" required></p>
+    
+    <button type="submit">Update Record</button>
+    <a href="/manage">Cancel</a>
+</form>
+</html>
