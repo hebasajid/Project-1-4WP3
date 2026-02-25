@@ -13,10 +13,9 @@
     
 <h1>Manage Your Records</h1>
 
-    <form action="/delete-all" method="POST" onsubmit="return confirm('Clear everything?');">
-        <button type="submit" style="color: red;">DELETE ALL RECORDS</button>
-    </form>
+    
     <hr>
+
 
     <table>
         <tr>
@@ -40,5 +39,9 @@
         </tr>
         {{/books}}
     </table>
+
+    <form action="/delete-all" method="POST" onsubmit="return confirm('Clear everything?');">
+        <button type="submit" style="color: red;">DELETE ALL RECORDS</button>
+    </form>
 </body>
 </html>
